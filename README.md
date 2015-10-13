@@ -5,7 +5,7 @@ Repositório de desenvolvimento do DoubleImage, Biblioteca de tratamento de imag
 
 ===========
 ###Instalação
-'''sh
+```sh
   $ git clone https://github.com/fariias/doubleimage.git
   $ cd doubleimage
-'''
+```
