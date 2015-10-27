@@ -6,19 +6,16 @@ typedef struct
 } pixel;
 
 
-void ler_arquivo()
+void ler_arquivo(char nome_arquivo[50], pixel imagem[512][512])
 {
+
+	FILE *Arquivo;
 	//definindo algumas variaveis locais
-	char nome_arquivo[50];
+	
 	char tipo[50];
 	int colunas,linhas,qualidade,i,j;
-	FILE *Arquivo;
-	pixel imagem[512][512];
-
-	//obtendo o caminho do arquivo
-    printf("Informe o Caminho do Arquivo: ");
-	scanf("%s", nome_arquivo); 
-
+	
+	
 	//abrindo o Arquivo 
 	Arquivo = fopen(nome_arquivo, "r");
 
@@ -32,20 +29,30 @@ void ler_arquivo()
 	//Salvando os pixels na matriz
 	for (i = 0; i < linhas; ++i)
 	{
-		for (j = 0; j < colunas; ++i)
+		for (j = 0; j < colunas; ++j)
 		{
-			fscanf(Arquivo, "%d", &imagem[i][j].r);
-			fscanf(Arquivo, "%d", &imagem[i][j].g);
-			fscanf(Arquivo, "%d", &imagem[i][j].b);
+			fscanf(Arquivo, "%d", &(imagem[i][j].r));
+			fscanf(Arquivo, "%d", &(imagem[i][j].g));
+			fscanf(Arquivo, "%d", &(imagem[i][j].b));
 		}
 	}
 	fclose(Arquivo);
-
+	
 }
 
-void salvar_arquivo()
+void imprimir_arquivo(pixel imagem[512][512])
 {
-
+	int i,j;
+for (i = 0; i < 512; ++i)
+	{
+		for (j = 0; j < 512; ++j)
+		{
+			printf("%d ", imagem[i][j].r);
+			printf("%d ", imagem[i][j].g);
+			printf("%d ", imagem[i][j].b);
+			
+		}
+	}
 }
 int main()
 {
@@ -53,6 +60,17 @@ int main()
 	pixel imagem[512][512];
 	char tipo[50];
 	int largura,altura,qualidade;
-	ler_arquivo();
+	int *pLargura;
+	pLargura = &largura;
+	
+
+	char nome_arquivo[50];
+
+	//obtendo o caminho do arquivo
+    printf("Informe o Caminho do Arquivo: ");
+	scanf("%s", nome_arquivo); 
+
+	ler_arquivo(nome_arquivo, imagem);
+	imprimir_arquivo(imagem);
 	return 0;
 }
